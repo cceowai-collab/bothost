@@ -55,7 +55,7 @@
         "country": "spain",
         "money": 7326.831885489932,
         "army_level": 20,
-        "city_level": 13,
+        "city_level": 40,
         "last_income": "2026-02-05T22:13:00.534368",
         "wins": 2,
         "losses": 3,
@@ -79,3 +79,4 @@
   }
 
 }
+
