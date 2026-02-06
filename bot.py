@@ -19,7 +19,7 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 # Конфигурация
-TOKEN = "8468824555:AAHmlxmS1EykKUdrGuqplMzi8t853TMToKc"
+TOKEN = "8574369883:AAF-F7eusMG5u00S9mYnEMwvWnbSJI3sty4"
 ADMIN_ID = 123456789  # Ваш ID для админки
 
 # Константы игры
@@ -1168,4 +1168,5 @@ async def main():
 
 
 if __name__ == "__main__":
+
     asyncio.run(main())
