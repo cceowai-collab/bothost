@@ -1882,3 +1882,32 @@ if __name__ == "__main__":
         logger.info("Бот остановлен пользователем")
     except Exception as e:
         logger.error(f"Фатальная ошибка: {e}")
+if __name__ == "__main__":
+    import os
+    
+    # Проверяем, запущен ли локально
+    if os.environ.get("BOTHOST") is None:
+        # Локальный запуск - используем long polling
+        import asyncio
+        
+        async def run_without_conflict():
+            from aiogram.client.session.aiohttp import AiohttpSession
+            
+            # Создаем сессию с другим именем
+            session = AiohttpSession()
+            bot = Bot(token=TOKEN, session=session)
+            
+            # Используем другой offset для избежания конфликта
+            await bot.delete_webhook(drop_pending_updates=True)
+            
+            storage = MemoryStorage()
+            dp = Dispatcher(storage=storage)
+            
+            # ... регистрация обработчиков ...
+            
+            await dp.start_polling(bot, allowed_updates=dp.resolve_used_update_types())
+        
+        asyncio.run(run_without_conflict())
+    else:
+        # Запуск на Bothost
+        asyncio.run(main())
